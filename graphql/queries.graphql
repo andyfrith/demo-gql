@@ -1,0 +1,14 @@
+
+type Query {
+  getGreeting(
+    input: getGreetingRequest!
+  ): getGreetingResponse!
+}
+
+input getGreetingRequest {
+  id: ID!
+}
+
+type getGreetingResponse {
+  greeting: Greeting
+}
