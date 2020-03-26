@@ -94,9 +94,8 @@ Tests will be added in the future.
 
 ## Next Steps
 
-### Authentication
-
-### Server-side Batching & Caching
+* Authentication
+* Server-side Batching & Caching
 
 **[⬆ back to top](#table-of-contents)**
 
