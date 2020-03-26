@@ -1,18 +1,19 @@
 import { logger } from './../logger';
 import { GraphqlContext } from './context';
 import { GetGreetingResponse, Resolvers } from './generated/resolvers';
-import service from '../service';
+import GreetingService from '../greeting/service';
 
 export const resolvers: Resolvers<GraphqlContext> = {
   Greeting: {
     id: ({ id }) => id,
-    message: async ({ id }, _, ctx) => {
-      const greeting = await ctx.greetingDataLoader.load(id);
-      logger.debug({ greeting }, 'resolvers - getGreeting()');
-      return greeting.message;
-    },
+    message: ({ message }) => message,
+    greeter: ({ greeter }) => greeter,
   },
   Query: {
+    greetings: async (_, __, ctx) => {
+      const { greetings } = await GreetingService.listGreetings(ctx, {});
+      return greetings;
+    },
     getGreeting: async (_, { input }, ctx) => {
       const { id } = input;
       const result = await ctx.greetingDataLoader.load(id);
@@ -21,14 +22,14 @@ export const resolvers: Resolvers<GraphqlContext> = {
     },
   },
   Mutation: {
-    upsertGreeting: async (_, { input }, ctx) => {
-      const { id, message } = input;
-      logger.debug({ id, message }, 'resolvers - upsertGreeting()');
-      const result = await service.upsertGreeting(ctx, {
-        greetingUpsertInput: { id, message },
+    createGreeting: async (_, { input }, ctx) => {
+      const { greeter, id, message } = input;
+      logger.debug({ greeter, id, message }, 'resolvers - createGreeting()');
+      const result = await GreetingService.createGreeting(ctx, {
+        greetingCreateInput: { greeter, id, message },
       });
-      logger.debug({ result }, 'resolvers - upsertGreeting()');
-      return { id, message };
+      logger.debug({ result }, 'resolvers - createGreeting()');
+      return { greeter, id, message };
     },
   },
 };

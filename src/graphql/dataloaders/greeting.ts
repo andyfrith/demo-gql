@@ -1,7 +1,7 @@
-import { Context, Greeting } from '../../service/types';
+import { Context, Greeting } from '../../greeting/types';
 import { logger } from './../../logger';
 import * as DataLoader from 'dataloader';
-import Service from '../../service';
+import Service from '../../greeting/service';
 
 export function greetingDataLoader(ctx: Context) {
   return new DataLoader<string, Greeting>(

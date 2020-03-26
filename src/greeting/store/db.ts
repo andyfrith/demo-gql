@@ -1,6 +1,6 @@
 import { Db, MongoClient } from 'mongodb';
-import { ENV } from '../env';
-import { logger } from '../logger';
+import { ENV } from '../../env';
+import { logger } from '../../logger';
 
 const DB_NAME = 'local';
 let connection = null;

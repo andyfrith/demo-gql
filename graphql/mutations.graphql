@@ -1,15 +1,17 @@
 type Mutation {
-  upsertGreeting(
-    input: UpsertGreetingInput!
-  ): UpsertGreetingOutput!
+  createGreeting(
+    input: CreateGreetingInput!
+  ): CreateGreetingOutput!
 }
 
-input UpsertGreetingInput {
+input CreateGreetingInput {
   id: ID!
   message: String!
+  greeter: String!
 }
 
-type UpsertGreetingOutput {
+type CreateGreetingOutput {
   id: ID!
   message: String!
+  greeter: String!
 }

@@ -1,7 +1,7 @@
-import { logger } from './../logger';
-import { ServiceFunction } from '../lib/service';
+import { ServiceFunction } from '../../lib/service';
+import { logger } from '../../logger';
 import { MongoGreetingStore } from '../store/greeting';
-import { Context, Greeting } from './types';
+import { Context, Greeting } from '../types';
 
 export interface Input {
   id: string;

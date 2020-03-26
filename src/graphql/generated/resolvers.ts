@@ -13,6 +13,19 @@ export type Scalars = {
   Float: number;
 };
 
+export type CreateGreetingInput = {
+  id: Scalars['ID'];
+  message: Scalars['String'];
+  greeter: Scalars['String'];
+};
+
+export type CreateGreetingOutput = {
+  __typename?: 'CreateGreetingOutput';
+  id: Scalars['ID'];
+  message: Scalars['String'];
+  greeter: Scalars['String'];
+};
+
 export type GetGreetingRequest = {
   id: Scalars['ID'];
 };
@@ -26,35 +39,26 @@ export type Greeting = {
   __typename?: 'Greeting';
   id?: Maybe<Scalars['ID']>;
   message?: Maybe<Scalars['String']>;
+  greeter?: Maybe<Scalars['String']>;
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
-  upsertGreeting: UpsertGreetingOutput;
+  createGreeting: CreateGreetingOutput;
 };
 
-export type MutationUpsertGreetingArgs = {
-  input: UpsertGreetingInput;
+export type MutationCreateGreetingArgs = {
+  input: CreateGreetingInput;
 };
 
 export type Query = {
   __typename?: 'Query';
   getGreeting: GetGreetingResponse;
+  greetings?: Maybe<Array<Maybe<Greeting>>>;
 };
 
 export type QueryGetGreetingArgs = {
   input: GetGreetingRequest;
-};
-
-export type UpsertGreetingInput = {
-  id: Scalars['ID'];
-  message: Scalars['String'];
-};
-
-export type UpsertGreetingOutput = {
-  __typename?: 'UpsertGreetingOutput';
-  id: Scalars['ID'];
-  message: Scalars['String'];
 };
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
@@ -158,8 +162,8 @@ export type ResolversTypes = {
   Greeting: ResolverTypeWrapper<Greeting>;
   String: ResolverTypeWrapper<Scalars['String']>;
   Mutation: ResolverTypeWrapper<{}>;
-  UpsertGreetingInput: UpsertGreetingInput;
-  UpsertGreetingOutput: ResolverTypeWrapper<UpsertGreetingOutput>;
+  CreateGreetingInput: CreateGreetingInput;
+  CreateGreetingOutput: ResolverTypeWrapper<CreateGreetingOutput>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
 };
 
@@ -174,9 +178,19 @@ export type ResolversParentTypes = {
   Greeting: Greeting;
   String: Scalars['String'];
   Mutation: {};
-  UpsertGreetingInput: UpsertGreetingInput;
-  UpsertGreetingOutput: UpsertGreetingOutput;
+  CreateGreetingInput: CreateGreetingInput;
+  CreateGreetingOutput: CreateGreetingOutput;
   Boolean: Scalars['Boolean'];
+};
+
+export type CreateGreetingOutputResolvers<
+  ContextType = any,
+  ParentType extends ResolversParentTypes['CreateGreetingOutput'] = ResolversParentTypes['CreateGreetingOutput']
+> = {
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  message?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  greeter?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: isTypeOfResolverFn<ParentType>;
 };
 
 export type GetGreetingResponseResolvers<
@@ -193,6 +207,7 @@ export type GreetingResolvers<
 > = {
   id?: Resolver<Maybe<ResolversTypes['ID']>, ParentType, ContextType>;
   message?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  greeter?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   __isTypeOf?: isTypeOfResolverFn<ParentType>;
 };
 
@@ -200,11 +215,11 @@ export type MutationResolvers<
   ContextType = any,
   ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']
 > = {
-  upsertGreeting?: Resolver<
-    ResolversTypes['UpsertGreetingOutput'],
+  createGreeting?: Resolver<
+    ResolversTypes['CreateGreetingOutput'],
     ParentType,
     ContextType,
-    RequireFields<MutationUpsertGreetingArgs, 'input'>
+    RequireFields<MutationCreateGreetingArgs, 'input'>
   >;
 };
 
@@ -218,23 +233,19 @@ export type QueryResolvers<
     ContextType,
     RequireFields<QueryGetGreetingArgs, 'input'>
   >;
-};
-
-export type UpsertGreetingOutputResolvers<
-  ContextType = any,
-  ParentType extends ResolversParentTypes['UpsertGreetingOutput'] = ResolversParentTypes['UpsertGreetingOutput']
-> = {
-  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  message?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  __isTypeOf?: isTypeOfResolverFn<ParentType>;
+  greetings?: Resolver<
+    Maybe<Array<Maybe<ResolversTypes['Greeting']>>>,
+    ParentType,
+    ContextType
+  >;
 };
 
 export type Resolvers<ContextType = any> = {
+  CreateGreetingOutput?: CreateGreetingOutputResolvers<ContextType>;
   getGreetingResponse?: GetGreetingResponseResolvers<ContextType>;
   Greeting?: GreetingResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
-  UpsertGreetingOutput?: UpsertGreetingOutputResolvers<ContextType>;
 };
 
 /**

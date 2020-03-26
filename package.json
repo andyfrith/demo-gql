@@ -1,22 +1,16 @@
 {
   "name": "demo-gql",
   "version": "0.0.1",
-  "description": "",
+  "description": "This demo is a minimal Node.js Typescript application providing a GraphQL API.",
   "main": "index.js",
   "scripts": {
     "generate": "gql-gen",
-    "generate:client": "apollo-client-codegen generate:serviceFactory --server=http://localhost:5002/graphql --includes=./src/**/*.gql --outputDir=./src/tests/gql/generated",
     "build": "tsc",
     "start": "node --max_old_space_size=128 --inspect ./build/index.js",
     "test": "npm run build && jest --clearCache && jest --verbose"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://goodapplemedia@bitbucket.org/goodapplemedia/apollographql.git"
-  },
-  "author": "",
+  "author": "Andy Frith",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/goodapplemedia/apollographql#readme",
   "devDependencies": {
     "@graphql-codegen/cli": "^1.6.1",
     "@graphql-codegen/typescript-resolvers": "^1.6.1",
