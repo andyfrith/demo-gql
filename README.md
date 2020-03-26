@@ -17,7 +17,7 @@ This very light application serves as a simple demo of several technologies and 
 
 ## Features
 
-(https://github.com/andyfrith/demo-gql/greetings.png)
+<img src="https://github.com/andyfrith/demo-gql-ui/blob/master/greetings.png" alt="Greetings" />
 
 Listing all greetings in the database is made possible with the following GraphQL Query:
 
