@@ -93,7 +93,6 @@ Tests will be added in the future.
 **[⬆ back to top](#table-of-contents)**
 
 ## Next Steps
-
 * Authentication
 * Server-side Batching & Caching
 
